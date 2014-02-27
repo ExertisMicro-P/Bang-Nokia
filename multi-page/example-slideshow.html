@@ -1,0 +1,31 @@
+
+<!-- content -->
+<h2>slideshow - flexslider</h2>
+<div class="flexslider">
+	<ul class="slides">
+		<li><a href="#" data-target-content="home"><img src="img/slides/slide-a.jpg" alt=""></a></li>
+		<li><a href="#" data-target-content="home"><img src="img/slides/slide-b.jpg" alt=""></a></li>
+		<li><a href="#" data-target-content="home"><img src="img/slides/slide-c.jpg" alt=""></a></li>
+		<li><a href="#" data-target-content="home"><img src="img/slides/slide-d.jpg" alt=""></a></li>
+		<li><a href="#" data-target-content="home"><img src="img/slides/slide-e.jpg" alt=""></a></li>
+		<li><a href="#" data-target-content="home"><img src="img/slides/slide-f.jpg" alt=""></a></li>
+		<li><a href="#" data-target-content="home"><img src="img/slides/slide-g.jpg" alt=""></a></li>
+		<li><a href="#" data-target-content="home"><img src="img/slides/slide-h.jpg" alt=""></a></li>
+		<li><a href="#" data-target-content="home"><img src="img/slides/slide-i.jpg" alt=""></a></li>
+		<li><a href="#" data-target-content="home"><img src="img/slides/slide-j.jpg" alt=""></a></li>
+	</ul>
+</div>
+
+<!-- scripts -->
+<script type="text/javascript">
+
+function initPage() {
+
+	head.load(prefixURL + "css/slideshow.css");
+	head.load(prefixURL + "js/jquery.flexslider-min.js");
+	head.load(prefixURL + "js/slideshow.js", function() {
+		assignSlideshow('.flexslider');
+	});
+
+}
+</script>

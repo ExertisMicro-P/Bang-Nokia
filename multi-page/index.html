@@ -1,0 +1,62 @@
+<div class="ms-wrapper">
+
+	<!-- nav -->
+	<div id="ms-nav">
+		<ul>
+			<li class="home-link"><a href="#" data-target-content="home">Home</a></li>
+			<li><a href="#" data-target-content="example-modal">Modal (Fancybox)</a></li>
+			<li><a href="#" data-target-content="example-slideshow">Slideshow (Flexslider)</a></li>
+			<li><a href="#" data-target-content="example-fade-in">Tall Page (Fade In)</a></li>
+			<li>
+				<a href="#">Dropdown</a>
+				<ul class="dd">
+					<li><a href="#" data-target-content="hello-world">Hello World</a></li>
+					<li><a href="#" data-target-content="example-prefixed-image">Prefixed Image</a></li>
+					<li><a href="#" data-target-content="example-repaired-href">Repaired HREF</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+
+	<!-- content -->
+	<div id="ms-content"><!-- loaded via ajax --></div>
+	<div id="ms-loading"></div>
+</div>
+
+<!-- scripts -->
+<script type="text/javascript">
+<!--
+
+var projectName = "PROJECT NAME - MULTI PAGE";
+var inSandbox = true;
+var contentWrapper = '.ms-wrapper';
+var ajaxWrapper = '#ms-content';
+
+var sandboxURL = '/multi-page/';
+var liveURL = '/ImagesPortal/UK/localisation/4/microsites/multi-page/';
+var prefixURL;
+
+prefixURL = (inSandbox) ? prefixURL = sandboxURL : prefixURL = liveURL;
+
+function initProject() {
+
+	// multi-page microsite content management
+	head.load(prefixURL + "css/multi-page.css");
+	head.load(prefixURL + "js/jquery.scrollTo.js");
+	head.load(prefixURL + "js/jquery.nav.js");
+	head.load(prefixURL + "js/multi-page.js", function() {
+		initContent();
+	});
+
+}
+
+// run initProject - externally called if in sandbox
+//
+if (inSandbox != true) {
+	$(document).ready(function () {
+		initProject();
+	});
+}
+
+//-->
+</script>

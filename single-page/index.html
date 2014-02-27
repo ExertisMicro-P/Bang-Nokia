@@ -1,0 +1,84 @@
+<div class="ms-wrapper">
+
+	<!-- nav -->
+	<div id="ms-nav">
+		<ul>
+			<li class="home-link"><a href="/">Home</a></li>
+			<li><a href="#section-1">Section-1</a></li>
+			<li><a href="#section-2">Section-2</a></li>
+			<li>
+				<span>More Slides</span>
+				<ul class="dd">
+					<li><a href="#section-3">Section-3</a></li>
+					<li><a href="#section-4">Section-4</a></li>
+					<li><a href="#section-5">Section-5</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+
+	<!-- content -->
+	<div id="ms-content">
+		<h2>single page - smooth scroll - fade-in</h2>
+
+		<div class="fade-in">
+			<div class="section" id="section-1"><a href="example-modal-content.html" class="ajax-fancybox"><img src="img/slides/slide-a.jpg" alt=""></a></div>
+			<div class="section" id="section-2"><img src="img/slides/slide-b.jpg" alt=""></div>
+			<div class="section" id="section-3"><img src="img/slides/slide-c.jpg" alt=""></div>
+			<div class="section" id="section-4"><img src="img/slides/slide-d.jpg" alt=""></div>
+			<div class="section" id="section-5"><img src="img/slides/slide-e.jpg" alt=""></div>
+		</div>
+	</div>
+
+</div>
+
+<!-- scripts -->
+<script type="text/javascript">
+<!--
+
+var projectName = "PROJECT NAME - SINGLE PAGE";
+var inSandbox = true;
+var contentWrapper = '.ms-wrapper';
+
+var sandboxURL = '/single-page/';
+var liveURL = '/ImagesPortal/UK/localisation/4/microsites/single-page/';
+var prefixURL;
+
+prefixURL = (inSandbox) ? prefixURL = sandboxURL : prefixURL = liveURL;
+
+function initProject() {
+
+	// modal content management
+	head.load(prefixURL + "css/modal.css");
+	head.load(prefixURL + "js/fancybox/jquery.fancybox-1.3.4.css");
+	head.load(prefixURL + "/js/fancybox/jquery.fancybox-1.3.4.js");
+	head.load(prefixURL + "js/modal.js", function() {
+		assignModal('.ajax-fancybox');
+	});
+
+	// fade-in content management
+	head.load(prefixURL + "css/fade-in.css");
+	head.load(prefixURL + "js/fade-in.js", function() {
+		assignFadeIn('.fade-in');
+	});
+
+	// single-page microsite content management
+	head.load(prefixURL + "css/single-page.css");
+	head.load(prefixURL + "js/jquery.scrollTo.js");
+	head.load(prefixURL + "js/jquery.nav.js");
+	head.load(prefixURL + "js/single-page.js", function() {
+		initPage();
+	});
+
+}
+
+// run initProject - externally called if in sandbox
+//
+if (inSandbox != true) {
+	$(document).ready(function () {
+		initProject();
+	});
+}
+
+//-->
+</script>

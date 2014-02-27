@@ -1,0 +1,16 @@
+
+<div id='hello-world'></div>
+
+<!-- scripts -->
+<script type="text/javascript">
+
+function initPage() {
+
+	// hello world content management
+	head.load(prefixURL + "css/hello-world.css");
+	head.load(prefixURL + "js/hello-world.js", function() {
+		assignHelloWorld('#hello-world');
+	});
+
+}
+</script>
