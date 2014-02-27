@@ -65,11 +65,10 @@
 
 		function sbReady() {
 			// get QS settings
-			var company = querystring_lookup('c');
-			var project = querystring_lookup('p');
+			var project = querystring_lookup('project');
 			// ajax load project
-			if ((company !== null && typeof(company) != "undefined") && (project !== null && typeof(project) != "undefined")) {
-				ajaxSBProject('/iComProjects/' + company + '/' + project, '#mp_zone_main');		// check QS & load content
+			if (project !== null && typeof(project) != "undefined") {
+				ajaxSBProject('/' + project, '#mp_zone_main');		// check QS & load content
 			}
 		}
 
