@@ -55,6 +55,12 @@ function assignCharlston(targetDiv) {
 		$(this).css("background-image", "none");
 	});
 
+	// analytics event - LoadModal
+	//
+	$(targetDiv).on('click', '.ajax-fancybox', function (event) {
+		createGAEvent(projectName, "View-Item", $(this).attr('id'), inSandbox);
+	});
+
 }
 
 //------------------------------------

@@ -37,6 +37,12 @@ function initPage() {
 		}
 	});
 
+	// analytics event - LoadModal
+	//
+	$(contentWrapper).on('click', '.ajax-fancybox', function (event) {
+		createGAEvent(projectName, "View-Item", $(this).attr('id'), inSandbox);
+	});
+
 	var landingPage = querystring_lookup('ms-p');
 	landingPage = ((typeof (landingPage) != "undefined" && landingPage !== null) ? landingPage : "home");
 	createGAEvent(projectName, 'Landing-Page', landingPage, inSandbox);																// analytics landing event
