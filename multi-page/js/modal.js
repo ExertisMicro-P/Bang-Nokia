@@ -21,7 +21,7 @@ function assignModal(targetDiv) {
 
 					// modify onclick event
 					$(this).on('click', function (e) {
-						createGAEvent(projectName, 'Click-Though', $(this).attr("href"), inSandbox);								// analytics clickthrough event
+						createGAEvent(projectName, 'Click-Through', $(this).attr("href"), inSandbox);								// analytics clickthrough event
 						window.location.href = $(this).attr("href");																								// set modal a tags to affect the parent window
 						e.preventDefault();
 					});

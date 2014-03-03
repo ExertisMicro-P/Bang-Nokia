@@ -43,7 +43,7 @@ function assignCharlston(targetDiv) {
 		$(this).attr("href", thisHREF);																																	// update path
 		if ($(this).hasClass('act')) {																																	// add click through event
 			$(this).on('click', function () {
-				createGAEvent(projectName, 'Click-Though', $(this).attr("href"), inSandbox);								// analytics clickthrough event
+				createGAEvent(projectName, 'Click-Through', $(this).attr("href"), inSandbox);								// analytics clickthrough event
 			});
 		}
 	});

@@ -25,7 +25,7 @@ function assignSlideshow(targetDiv) {
 
 	// analytics event
 	$('.slides a').on('click', function() {
-		createGAEvent(projectName, 'Click-Though', $(this).attr("href"), inSandbox);														// analytics clickthrough event
+		createGAEvent(projectName, 'Click-Through', $(this).attr("href"), inSandbox);														// analytics clickthrough event
 	});
 
 }
