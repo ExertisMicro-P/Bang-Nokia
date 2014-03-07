@@ -13,6 +13,23 @@ function initContent() {
 	landingPage = ((typeof (landingPage) != "undefined" && landingPage !== null) ? landingPage : "home");
 	ajaxMSPage(setMSPage(landingPage), ajaxWrapper);		// check QS & load content
 
+	// prefix image paths outside ajax area
+	$(contentWrapper).find('img').each(function () {
+		var thisSRC = checkSRC($(this).attr('src'));
+		$(this).attr('src', thisSRC);
+	});
+
+	// repair anchor tags outside ajax area
+	$(contentWrapper + ' a').each(function () {
+		var thisHREF = checkHREF($(this).attr('href'));
+		$(this).attr("href", thisHREF);																													// update path
+		if ($(this).hasClass('act')) {																													// add click through event
+			$(this).on('click', function () {
+				createGAEvent(projectName, 'Click-Though', $(this).attr("href"), inSandbox);				// analytics clickthrough event
+			});
+		}
+	});
+
 	// analytics event
 	createGAEvent(projectName, "Landing-Page", landingPage, inSandbox);
 }
