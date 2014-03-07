@@ -158,6 +158,10 @@
 	background: #fff;	
 }
 
+#mp-header, .h-row {
+	margin: 0;
+}
+
 h2
 {
 	margin: 15px 0 0 0;
