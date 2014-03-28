@@ -684,9 +684,9 @@ ol, ul {
   outline: 0; }
 
 .nav ul {
-  margin-left: 364px !important;
+  margin-left: 310px !important;
   float: left;
-  width: 630px;
+  width: 680px;
   padding: 0;
   margin: 0;
   list-style-type: none; }
