@@ -1,0 +1,63 @@
+<div class="ms-wrapper">
+	<div class="container_25" style="margin-top:-15px;">
+	<!-- nav -->
+		<div class="menu">
+			<div class="logo-lg">
+				<a href="#" data-target-content="home"><img style="display:block; position:absolute; margin-top:1px; margin-left:20px;" alt="" width="120px" src="nokia/images/nokia-logo.png"/></a>
+			</div>
+			<div id="ms-nav" class="nav">
+				<ul>
+					<li><a href="#" data-target-content="products">PRODUCTS</a></li>
+					<li><a href="#" data-target-content="accessories">ACCESSORIES</a></li>
+					<li><a href="#" data-target-content="services">SERVICES</a></li>
+					<li><a href="#" data-target-content="apps">APPS</a></li>
+					<li><a href="#" data-target-content="partner-support">PARTNER SUPPORT</a></li>
+					<li><a href="#" data-target-content="incentives">INCENTIVES</a></li>
+				</ul>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<!-- content -->
+		<div id="ms-content" style="padding:0px; width:990px;"><!-- loaded via ajax --></div>
+		<div id="ms-loading"></div>
+	</div>
+</div>
+
+<!-- scripts -->
+<script type="text/javascript">
+<!--
+
+var projectName = "nokia";
+var inSandbox = true;
+var contentWrapper = '.ms-wrapper';
+var ajaxWrapper = '#ms-content';
+
+var sandboxURL = '/nokia/';
+var liveURL = '/ImagesPortal/UK/localisation/4/microsites/nokia/';
+var prefixURL;
+
+prefixURL = (inSandbox) ? prefixURL = sandboxURL : prefixURL = liveURL;
+
+function initProject() {
+
+	// multi-page microsite content management
+	head.load(prefixURL + "css/multi-page.css");
+	head.load(prefixURL + "css/styles.css");
+	head.load(prefixURL + "js/jquery.scrollTo.js");
+	head.load(prefixURL + "js/jquery.nav.js");
+	head.load(prefixURL + "js/multi-page.js", function() {
+		initContent();
+	});
+
+}
+
+// run initProject - externally called if in sandbox
+//
+if (inSandbox != true) {
+	$(document).ready(function () {
+		initProject();
+	});
+}
+
+//-->
+</script>

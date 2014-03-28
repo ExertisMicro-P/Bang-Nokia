@@ -1,0 +1,165 @@
+
+.ms-wrapper 
+{
+	color: #000;
+	font-size: 13px;
+	line-height: 1.3;
+	font-family: 'Calibri', Arial, Helvetica, sans-serif;	
+	width: 990px;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	border: 0; /*remove for golive*/
+	/* original background: #546173; */
+	background: #ffffff !important;
+}
+
+/* Nav */
+.ms-wrapper #ms-nav
+{
+	margin: 0;
+	width: 990px;
+	background: #333c48;
+}
+
+.ms-wrapper #ms-nav ul
+{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	float: left;
+}
+
+.ms-wrapper #ms-nav.sticky-nav
+{
+	position: fixed;
+	top: 0;
+	z-index: 60;
+	border-bottom: 0px solid #000;
+}
+
+.ms-wrapper #ms-nav li 
+{
+	display: inline-block;
+	float: left;
+	padding: 0;
+	margin: 0 12px 0 0;
+	position: relative;
+}
+
+.ms-wrapper #ms-nav li.home-link
+{
+	text-indent: -999em;
+	overflow: hidden;
+	width: 60px;
+	margin-right: 12px;
+	background: #414a56 url(/iComProjects/templates/ajax-microsite/img/sprite.png) 24px 19px no-repeat;
+}
+
+.ms-wrapper #ms-nav a, .ms-wrapper #ms-nav span
+{
+	color: #fff;
+	display: block;
+	font-size: 15px;
+	padding: 16px;
+	text-decoration: none;
+	font-weight: lighter;
+}
+
+.ms-wrapper #ms-nav li.active-link
+{
+	background: url(/iComProjects/templates/ajax-microsite/img/sprite.png) 50% bottom no-repeat;
+}
+
+.ms-wrapper #ms-nav a:hover 
+{
+	color: #dedede;
+}
+
+/* dropdown menu */
+#ms-nav ul.dd 
+{
+	display: none;
+	position: absolute !important;
+	z-index: 30;
+	top: 51px;
+	left: 0;
+	margin: 0 0 0 0px;
+	width: 260px;
+	height: auto;
+	padding: 0 0 0px 0;
+	text-align: left;
+	background: #333C48;
+}
+
+#ms-nav ul.dd li 
+{
+	float: none !important;
+	display: block !important;
+	zoom: 1;
+	background: none;
+	margin: 0;
+	border-top: 1px solid #414A56;
+}
+
+#ms-nav ul.dd li a 
+{
+	color: #fff;
+	margin: 0;
+	padding: 6px 18px;
+	height: auto;
+	font-size: 13px;
+	line-height: normal;
+	font-weight: normal;
+	text-transform: none;
+	letter-spacing: normal;
+}
+
+#ms-nav ul.dd li a:hover
+{
+	text-decoration: underline;
+	background: none;
+}
+
+#ms-nav ul li:hover ul.dd
+{
+	display: block;
+}
+
+/* Layout */
+.ms-wrapper #ms-content
+{
+	width: 960px;
+	padding: 15px;
+	position: relative;	
+}
+
+/* Styles & Site overrides - Force fullwidth Layout */
+#inner-container
+{
+	padding: 0;	
+	width: 990px;
+}
+
+#mp_content_left
+{
+	display: none;
+}
+
+#mp_content_main, #mp_zone_main, #mp_content, #mp_zone_10
+{
+	width: 990px;
+}
+
+#mp_zone_9
+{
+	width: 970px;
+	padding: 0 10px;
+	background: #fff;	
+}
+
+h2
+{
+	margin: 15px 0 0 0;
+	padding: 0 0 15px 0;
+}

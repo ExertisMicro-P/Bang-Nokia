@@ -1,0 +1,66 @@
+.btnPlacement {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+}
+
+.nokiaProductBtn {
+	position: relative;
+	width: auto;
+	font-size: 24px;
+	float: left;
+	text-align: center;
+	font-weight: bold;
+	background-color: #727a7d;
+	color: #ffffff;
+	margin-right: 0px;
+	padding: 10px 20px;
+	float: right;
+	bottom:0px;
+}
+
+.nokiaProductBtn:hover {
+	background-color:#124191;
+	color:#ffffff;
+}
+
+.nokiaBtn {
+	position: relative;
+	width: auto;
+	font-size: 14px;
+	float: left;
+	text-align: center;
+	font-weight: bold;
+	background-color: #124191;
+	color: #ffffff;
+	margin-right: 0px;
+	padding: 10px 20px;
+	bottom:0px;
+}
+
+.nokiaBtn:hover {
+	background-color:#ffffff;
+	color:#124191;
+	border:2px solid #124191;
+}
+
+.nokiaBtn_white {
+	position: relative;
+	width: auto;
+	font-size: 14px;
+	float: left;
+	text-align: center;
+	font-weight: bold;
+	background-color: #ffffff;
+	color: #124191;
+	margin-right: 0px;
+	padding: 10px 20px;
+	bottom:0px;
+}
+
+.nokiaBtn_white:hover {
+	background-color:#124191;
+	color:#ffffff;
+	border:2px solid #ffffff;
+}
+

@@ -1,0 +1,38 @@
+.grid_25 {
+	.section {
+		margin-left:0px;
+		margin-right:0px;
+		padding-bottom:0px !important;
+	}
+	.productBox {
+		height:540px;
+		width:465px;
+		background-color:#ffffff;
+		margin-left:20px;
+		margin-right:0px;
+		margin-top:20px;
+		h2 {
+			font-size:34px;
+		}
+	}
+}
+
+ul.partner-support_list {
+    list-style: none;
+    padding-left:30px;
+    margin:0;
+    li { 
+    	.bullet--margin {
+			padding-left:40px !important;
+			display: block;
+			margin-top: -15px;
+		}
+	}
+
+	li:before {
+    	content: "\2022";
+    	color: #124191;
+	}
+}
+
+
