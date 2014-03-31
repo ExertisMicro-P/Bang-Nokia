@@ -2,7 +2,7 @@
 
 Project Name: MicroP - Nokia 
 Author: Farhan Farrukh 
-Date: 2014-03-28 
+Date: 2014-03-31 
 
 */
 
@@ -684,9 +684,7 @@ ol, ul {
   outline: 0; }
 
 .nav ul {
-  margin-left: 310px !important;
-  float: left;
-  width: 680px;
+  float: right !important;
   padding: 0;
   margin: 0;
   list-style-type: none; }
@@ -722,7 +720,7 @@ ol, ul {
   padding: 0;
   *zoom: 1;
   background-color: white;
-  height: 420px;
+  height: 505px;
   margin-top: -15px; }
 
 .bx-wrapper img {
@@ -733,7 +731,7 @@ ol, ul {
 ===================================*/
 .bx-wrapper .bx-viewport {
   width: 990px;
-  height: 415px !important; }
+  height: 500px !important; }
 
 .bx-wrapper .bx-pager,
 .bx-wrapper .bx-controls-auto {
@@ -871,15 +869,13 @@ ol, ul {
   font-size: .85em;
   padding: 10px; }
 
-.slider1 {
-  background: url(/nokia/images/slider/slide1.jpg) center center no-repeat white;
+.sliderBG {
+  background: url(/nokia/images/slider/sliderBG.png) center center no-repeat white;
   height: 100%;
   weight: 100%; }
 
-.slider2 {
-  background: url(/nokia/images/slider/slide2.jpg) center center no-repeat white;
-  height: 100%;
-  weight: 100%; }
+.center * {
+  text-align: center !important; }
 
 .grid_25 .section {
   margin-left: 0px;
@@ -894,6 +890,8 @@ ol, ul {
   margin-top: 20px; }
   .grid_25 .productBox h2 {
     font-size: 34px; }
+  .grid_25 .productBox p {
+    padding-right: 15px; }
 
 ul.partner-support_list {
   list-style: none;

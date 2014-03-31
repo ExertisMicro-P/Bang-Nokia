@@ -19,7 +19,7 @@
 	padding: 0;
 	*zoom: 1;
 	background-color:white;
-	height:420px;
+	height:505px;
 	margin-top:-15px;
 }
 
@@ -33,7 +33,7 @@
 
 .bx-wrapper .bx-viewport {
 	width:990px;
-	height:415px !important;
+	height:500px !important;
 }
 
 .bx-wrapper .bx-pager,
@@ -201,14 +201,12 @@
 }
 
 
-.slider1 {
-	background: url(/nokia/images/slider/slide1.jpg) center center no-repeat #fff;
+.sliderBG {
+	background: url(/nokia/images/slider/sliderBG.png) center center no-repeat #fff;
 	height:100%;
 	weight:100%;
 }
 
-.slider2 {
-	background: url(/nokia/images/slider/slide2.jpg) center center no-repeat #fff;
-	height:100%;
-	weight:100%;
+.center * {
+	text-align:center !important;
 }
