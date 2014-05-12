@@ -3,13 +3,6 @@ body {
 	height: 100%; 
 }
 
-@font-face {
-  font-family: 'Ubuntu';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Ubuntu'), url(http://themes.googleusercontent.com/static/fonts/ubuntu/v5/_xyN3apAT_yRRDeqB3sPRg.woff) format('woff'); 
-}
-
 h1, h2, h3, h4, p, ul, li  {
  	margin: 0;
  	padding: 0;
@@ -22,14 +15,16 @@ h1, h2, h3, h4, p, ul, li  {
 ol, ul { list-style: none; }
 
 .container_25 {
-	font-family: 'Noto Sans', Arial, Calibri, sans-serif;
+	font-family: 'nokiaPureRegular', Arial, Calibri, sans-serif;
 	backgound-color:#000000;
 
 	ul, p {
 		color:#666666;
 	}
 
-	h1,h2,h3,h4,h5,h6{ font-weight:bold;}
+	h1,h2,h3,h4,h5,h6 {
+		font-family: 'NokiaPureHeadlineBold', Arial, Calibri, sans-serif;
+	}
 	h1{ font-size:34px;}
 	h2{ font-size:24px;}
 	h3{ font-size:18px;}

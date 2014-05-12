@@ -85,6 +85,12 @@ $(contentWrapper).on('click', 'a', function (e) {
 			$(contentWrapper + ' #ms-nav a').removeClass('active');
 			$(this).addClass('active');
 		}
+
+		// Added this piece of code to add / remove active class to nav menu when the page is re-directed to a different page through other mean of navigation. e.g clicking a button on the page.
+		if ($(this).attr('id') == 'product_menu' || $(this).attr('id') == 'accessories_menu' || $(this).attr('id') == 'services_menu' ||  $(this).attr('id') == 'apps_menu') {
+			$(contentWrapper + ' #ms-nav a').removeClass('active');
+			$(contentWrapper + ' #ms-nav a.' + $(this).attr('id')).addClass('active');
+		}		
 	}
 	else if ($(this).attr('href') == "#") {
 		e.preventDefault();

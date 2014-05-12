@@ -2,7 +2,7 @@
 
 Project Name: MicroP - Nokia 
 Author: Farhan Farrukh 
-Date: 2014-03-31 
+Date: 2014-04-29 
 
 */
 
@@ -503,15 +503,45 @@ body {
 .clearfix {
   zoom: 1; }
 
+@font-face {
+  font-family: 'nokiaPureLight';
+  src: url("/nokia/fonts/NokiaPure/NokiaPureText-Light.ttf"); }
+
+@font-face {
+  font-family: 'nokiaPureBold';
+  src: url("/nokia/fonts/NokiaPure/NokiaPureText-Bold.ttf"); }
+
+@font-face {
+  font-family: 'nokiaPureMedium';
+  src: url("/nokia/fonts/NokiaPure/NokiaPureText-Medium.ttf"); }
+
+@font-face {
+  font-family: 'nokiaPureRegular';
+  src: url("/nokia/fonts/NokiaPure/NokiaPureText-Regular.ttf"); }
+
+@font-face {
+  font-family: 'NokiaPureHeadlineBold';
+  src: url("/nokia/fonts/NokiaHeadline/NokiaPureHeadline-Bold.ttf"); }
+
+@font-face {
+  font-family: 'NokiaPureHeadlineExtraBold';
+  src: url("/nokia/fonts/NokiaHeadline/NokiaPureHeadline-ExtraBold.ttf"); }
+
+@font-face {
+  font-family: 'NokiaPureHeadlineLight';
+  src: url("/nokia/fonts/NokiaHeadline/NokiaPureHeadline-Light.ttf"); }
+
+@font-face {
+  font-family: 'NokiaPureHeadlineRegular';
+  src: url("/nokia/fonts/NokiaHeadline/NokiaPureHeadline-Regular.ttf"); }
+
+@font-face {
+  font-family: 'NokiaPureHeadlineUltraLight';
+  src: url("/nokia/fonts/NokiaHeadline/NokiaPureHeadline-UltraLight.ttf"); }
+
 body {
   min-width: 990px;
   height: 100%; }
-
-@font-face {
-  font-family: 'Ubuntu';
-  font-style: normal;
-  font-weight: 400;
-  src: local("Ubuntu"), url(http://themes.googleusercontent.com/static/fonts/ubuntu/v5/_xyN3apAT_yRRDeqB3sPRg.woff) format("woff"); }
 
 h1, h2, h3, h4, p, ul, li {
   margin: 0;
@@ -525,14 +555,14 @@ ol, ul {
   list-style: none; }
 
 .container_25 {
-  font-family: 'Noto Sans', Arial, Calibri, sans-serif;
+  font-family: 'nokiaPureRegular', Arial, Calibri, sans-serif;
   backgound-color: #000000;
   /** The Magnificent Clearfix: Updated to prevent margin-collapsing on child elements.  mp/bestclearfix **/
   /** Fix clearfix: blueprintcss.lighthouseapp.com/projects/15318/tickets/5-extra-margin-padding-bottom-of-page **/ }
   .container_25 ul, .container_25 p {
     color: #666666; }
   .container_25 h1, .container_25 h2, .container_25 h3, .container_25 h4, .container_25 h5, .container_25 h6 {
-    font-weight: bold; }
+    font-family: 'NokiaPureHeadlineBold', Arial, Calibri, sans-serif; }
   .container_25 h1 {
     font-size: 34px; }
   .container_25 h2 {
@@ -892,6 +922,17 @@ ol, ul {
     font-size: 34px; }
   .grid_25 .productBox p {
     padding-right: 15px; }
+.grid_25 .accessoriesBox {
+  height: 500px;
+  width: 465px;
+  background-color: #ffffff;
+  margin-left: 20px;
+  margin-right: 0px;
+  margin-top: 20px; }
+  .grid_25 .accessoriesBox h2 {
+    font-size: 34px; }
+  .grid_25 .accessoriesBox p {
+    padding-right: 15px; }
 
 ul.partner-support_list {
   list-style: none;
@@ -1098,6 +1139,13 @@ ul.partner-support_list {
 .cboxIE #cboxMiddleLeft,
 .cboxIE #cboxMiddleRight {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF); }
+
+a {
+  color: #124191;
+  text-decoration: none; }
+
+a:hover {
+  text-decoration: underline; }
 
 .line-height {
   line-height: 20px; }
