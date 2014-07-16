@@ -923,6 +923,11 @@ ol, ul {
   margin-left: 20px;
   margin-right: 0px;
   margin-top: 20px; }
+  .grid_25 .productBox .new-flash {
+    position: absolute;
+    right: 0px;
+    margin-right: -30px;
+    margin-top: -1px; }
   .grid_25 .productBox h2 {
     font-size: 34px; }
   .grid_25 .productBox p {
