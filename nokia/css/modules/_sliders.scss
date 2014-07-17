@@ -211,8 +211,18 @@
 	background: url(/nokia/images/slider/sliderNewBG.png) center center no-repeat #fff;
 	height:100%;
 	weight:100%;
+	.sliderHeadingThin {
+		font-family:NokiaPureHeadlineRegular;
+		height:36px;
+		font-size:36px;
+		margin:0px;
+		color:#ffffff;
+		text-shadow: 1px 1px 10px #000;
+		line-height:36px;
+	}
 }
 
 .center * {
 	text-align:center !important;
 }
+
