@@ -2,7 +2,7 @@
 
 Project Name: MicroP - Nokia 
 Author: Farhan Farrukh 
-Date: 2014-07-16 
+Date: 2014-07-17 
 
 */
 
@@ -908,6 +908,14 @@ ol, ul {
   background: url(/nokia/images/slider/sliderNewBG.png) center center no-repeat white;
   height: 100%;
   weight: 100%; }
+  .sliderNewBG .sliderHeadingThin {
+    font-family: NokiaPureHeadlineRegular;
+    height: 36px;
+    font-size: 36px;
+    margin: 0px;
+    color: #ffffff;
+    text-shadow: 1px 1px 10px #000;
+    line-height: 36px; }
 
 .center * {
   text-align: center !important; }
