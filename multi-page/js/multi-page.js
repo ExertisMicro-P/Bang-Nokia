@@ -10,7 +10,8 @@ var currentUser = whoami();
 function initContent() {
 
 	var landingPage = querystring_lookup('p');
-	landingPage = ((typeof (landingPage) != "undefined" && landingPage !== null) ? landingPage : "home");
+	landingPage = ((typeof landingPage !== "undefined" && landingPage !== null) ? landingPage : "home");
+	
 	ajaxMSPage(setMSPage(landingPage), ajaxWrapper);		// check QS & load content
 
 	// prefix image paths outside ajax area
@@ -25,7 +26,7 @@ function initContent() {
 		$(this).attr("href", thisHREF);																													// update path
 		if ($(this).hasClass('act')) {																													// add click through event
 			$(this).on('click', function () {
-				createGAEvent(projectName, 'Click-Though', $(this).attr("href"), inSandbox);				// analytics clickthrough event
+				createGAEvent(projectName, 'Click-Through', $(this).attr("href"), inSandbox);				// analytics clickthrough event
 			});
 		}
 	});
@@ -40,8 +41,17 @@ function initContent() {
 // look in querysting first to jump to specific content, defaults to home.html
 //
 function setMSPage(requestedPage) {
-	var targetPage = ((typeof (requestedPage) != "undefined" && requestedPage !== null) ? requestedPage : "home");
-	var contentURL = prefixURL + targetPage + '.html';
+
+	var targetPage = ((typeof (requestedPage) !== "undefined" && requestedPage !== null) ? requestedPage : "home");
+	var aHREF = targetPage;
+	var aHASH = '';
+	var arrHREF;
+	if (aHREF.indexOf('#') >= 0) {
+		arrHREF = aHREF.split('#');
+		aHREF = arrHREF[0];
+		aHASH = '#' + arrHREF[1];
+	}
+	var contentURL = prefixURL + aHREF + '.html' + aHASH;
 
 	// analytics event
 	createGAEvent(projectName, "Load-Page", targetPage, inSandbox);
@@ -52,15 +62,17 @@ function setMSPage(requestedPage) {
 // loads the content on an html page to the target div
 //
 function ajaxMSPage(ajaxURL, targetDiv) {
+	
 	$.ajax({
 		global: true,
-		cache: false,																																// Change for live
-		url: ajaxURL,																																// path to file
+		cache: false,
+		url: ajaxURL,																																								// path to file
 		dataType: 'html',
 		success: function (data) {
 			$('#ms-loading').fadeIn();
 			$(targetDiv).html(data);																									// load content area
-			initPage();																																// call function included in ajaxed content, used to assign plugins, listeners etc.
+			
+			initPage();																															// call function included in ajaxed content, used to assign plugins, listeners etc.
 
 			// prefix image paths
 			$(targetDiv).find('img').each(function() {
@@ -88,14 +100,10 @@ function ajaxMSPage(ajaxURL, targetDiv) {
 // listener for navigation, if the link has the appropriate data value the ajax load is called
 //
 $(contentWrapper).on('click', 'a', function (e) {
-	if ($(this).data('target-content') != undefined) {
 
-		if ($(this).hasClass = "external") {
-			ajaxMSPage(setMSPage($(this).data('target-content')), '#ms-content');
-		}
-		else {
-			ajaxMSPage(setMSPage($(this).data('target-content')), '#ms-content');
-		}
+	if (typeof($(this).data('target-content')) !== 'undefined') {
+
+		ajaxMSPage(setMSPage($(this).data('target-content')), '#ms-content');
 
 		// flag active menu link
 		if ($(this).parents('div:first').attr('id') == 'ms-nav') {
@@ -139,40 +147,50 @@ $(window).scroll(function () {
 
 function checkHREF(thisHREF){
 
-	var aHREF = thisHREF;
-	var aHASH = '';
-	var arrHREF;
 	var response;
 
-	if (aHREF == '#') {																																						// link managed via assignment
-		response = aHREF;
+	if (typeof thisHREF === "undefined" ) {
+		response = '';
 	}
 	else {
-		if (aHREF.indexOf('http') >= 0 && aHREF.indexOf('exertismicro-p') < 0) {										// external link - don't alter
+
+		var aHREF = thisHREF;
+		var cleanHREF = ie7fix(thisHREF,'href');
+		var aHASH = '';
+		var arrHREF;
+
+		if (cleanHREF.indexOf('#') == 0) {																																				// link managed via assignment
 			response = aHREF;
 		}
 		else {
-			if (aHREF.indexOf('fnFile=') >= 0) {																											// repair relative file link (deals with iCom interference)
-				arrHREF = aHREF.split('fnFile=');
-				aHREF = arrHREF[1];
-				$(this).attr('href', aHREF);
+			if (cleanHREF.indexOf('http') >= 0 && cleanHREF.indexOf('exertismicro-p') < 0) {						// external link - don't alter
+				response = aHREF;
 			}
-			var qsDelimiter = "?";
-			if (aHREF.indexOf('?') >= 0) { qsDelimiter = "&"; }																				// detemin appropriate QS delimiter
-			if (aHREF.indexOf('#') >= 0) { 																														// does the HREF contain a # value?
-				arrHREF = aHREF.split('#');
-				aHREF = arrHREF[0];
-				aHASH = '#' + arrHREF[1];
+			else {
+				if (aHREF.indexOf('fnFile=') >= 0) {																											// repair relative file link (deals with iCom interference)
+					arrHREF = aHREF.split('fnFile=');
+					aHREF = arrHREF[1];
+					$(this).attr('href', aHREF);
+				}
+				var qsDelimiter = "?";
+				if (aHREF.indexOf('?') >= 0) { qsDelimiter = "&"; }																				// detemin appropriate QS delimiter
+				if (aHREF.indexOf('#') >= 0) { 																														// does the HREF contain a # value?
+					arrHREF = aHREF.split('#');
+					aHREF = arrHREF[0];
+					aHASH = '#' + arrHREF[1];
+				}
+				response = aHREF + qsDelimiter + 'mscssid=' + currentUser.mscssid + aHASH;								// maintain session & add the session ID, append any # value
 			}
-			response = aHREF + qsDelimiter + 'mscssid=' + currentUser.mscssid + aHASH;								// maintain session & add the session ID, append any # value
 		}
 	}
+
 	return response;
 }
 
 function checkSRC(thisSRC){
 
-	var imgSRC = thisSRC;
+	var imgSRC = thisSRC;	
+	imgSRC = ie7fix(imgSRC,'src');	
 
 	if (inSandbox != true) {																																			// prefix image paths -  (deals with iCom interference)
 		imgSRC = replaceAll(imgSRC, '/ImagesPortal/UK/localisation/4/', '');
@@ -184,6 +202,33 @@ function checkSRC(thisSRC){
 
 	var response = imgSRC;
 	return response;
+}
+
+function ie7fix(addr, domtype) {
+	
+	var cleanAddr = addr;
+	var cleanHash = '';
+	var arrAddr;
+	
+	switch (domtype){
+		case 'src':		
+			if (cleanAddr.indexOf(document.domain) >= 0) { 																									// fix ie7 bug - remove domain from src value
+				cleanAddr = cleanAddr.replace('http://' + document.domain + '/', '');
+				cleanAddr = cleanAddr.replace('https://' + document.domain + '/', '');
+			}
+			break;
+		
+		case 'href':				
+			var url = document.URL;
+			var arrURL = url.split('#');			
+			cleanAddr = cleanAddr.replace(arrURL[0], '');
+			if (cleanAddr == '##') {
+				cleanAddr = cleanAddr.replace('##', '#');
+			}
+			break;
+	}
+	
+	return cleanAddr;
 }
 
 //------------------------------------
