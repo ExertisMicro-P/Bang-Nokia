@@ -1,59 +1,77 @@
+# Exertis Micro-P Nokia Microsite
 
-====================
+This project is based on the [Bang-Conect](https://github.com/ExertisMicro-P/Bang-Conect) (multi-page) framework.
 
-emp-quickstart-prime
+Bang's test site: [http://nokia.microp.bang-on.net/?project=nokia](http://nokia.microp.bang-on.net/?project=nokia)
 
-====================
+## TODO
+* Get grunt to take care of deployments to test site (need to do better than a direct rsync, could leverage `ec2 deploy` script).
+* Make better use of [bake](https://github.com/MathiasPaumgarten/grunt-bake) templating to DRY up the markup.
+* Move inline styling into SCSS modules.
+* Move styles from [_shame.scss](./src/scss/_shame.scss) to abstracted modules.
 
-Exertis Micro-P Quickstart Project for microsites, landing page, etc on exertismicro-p.co.uk - fork from this to start a new project
+## Getting started
 
-##Prerequisite
-Webserver with domain & webroot folder (default document index.html)
+You need [grunt](http://gruntjs.com/), go [install](http://gruntjs.com/installing-grunt) that if you haven't got it already.
 
-##Getting Started
+Ensure you have the [Editorconfig](https://github.com/sindresorhus/editorconfig-sublime) sublime plugin installed and enabled.
 
-1) Clone this Quickstart repo into the webroot setup above
+You'll also want the [livereload browser extension](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions).
 
+Clone the repo.
 
-2) Choose from ONE of the template folders & delete the remaining two
+```sh
+git clone git@github.com:ExertisMicro-P/Bang-Nokia.git
+```
 
-- Multi-Page (Ajax)
-- Single-Page
-- Charlston
+Install the node modules.
 
-Template Previews Online
-- http://www.exertismicro-p.co.uk/cmcPage.asp?idPage=27480 | Multi-Page (Ajax)
-- http://www.exertismicro-p.co.uk/cmcPage.asp?idPage=27481 | Single-Page
-- http://www.exertismicro-p.co.uk/cmcPage.asp?idPage=27482 | Charlston
+```sh
+cd Bang-Nokia
+npm install
+```
 
-NB:
-- If the templates do not match your requirements, you can delete all contents within the template folder apart from index.html, which you should rework to suit your needs.
-- Every project must to contain initProject() in its index.html file which becomes the equivient of $(document).ready();
+## Development
 
+**You should not be changing anything in the [multi-page](multi-page) or [nokia](nokia) directories directly.**
 
-3) Rename to the template folder to your agreed project name
-- rename multi-page myproject
+Our files can be found in the [src](src) directory. The files in `src` are then compiled by grunt (in combination with `micro-site`) to build the `nokia` directory.
 
+To start a local webserver with grunt listening for changes simply run `grunt`.
 
-4) Configure the project index file (/PROJECT-NAME/index.html)
+Running or `grunt` or `grunt watch` will listen for changes and do partial recompile of the `nokia` microsite, but this is **not a complete build**. `grunt build` should be run before committing.
 
-- Set var projectName = [your agreed PROJECT-NAME]
-- Set inSandbox = true
-- Use head.load() to include any global JS and CSS
+### Grunt tasks
+* `grunt` - alias for `grunt watch` & `grunt server`
+* `grunt watch` - watch the `src` directory for changes
+* `grunt server` - run a local webserver and open a browser tab
+* `grunt imagemin` - optimise images (this can be slow, so **not included** in `build` by default)
+* `grunt build` - compile the `nokia` microsite
+* `grunt rebuild` - wipe the `nokia` microsite before building (updates the `micro-site` framework).
 
-NB:
-- If you are using the Multi-Page template you will also need to configure home.html, which is ajaxed into the page by default.
-- All ajaxed pages need to contain initPage() which again is called after the content has been received.
-- Inside initPage use head.load() to include any JS and CSS required for this page
+## Updating the multi-page framework
 
+The [multi-page](multi-page) framework should be kept up to date with the version in the [Bang-Conect](https://github.com/ExertisMicro-P/Bang-Conect) repository.
 
-5) The sandbox expects a querystring parameter to be passed to know where to load the project from
-- http://YOUR-DOMAIN?project=myproject
+You can update the framework by pulling the latest version from [Bang-Conect](https://github.com/ExertisMicro-P/Bang-Conect) and copying the changes into the repo.
 
-NB
-- If you are using the MULTI-PAGE template you can also pass p=PAGE-NAME to change the default landing page to one of the sub pages
-- Each Quickstart Template contains a README.md file which has more details about the options / functions available
+```sh
+# make sure to clone the repo outside of this one
+git clone git@github.com:ExertisMicro-P/Bang-Conect.git
 
+rsync -r --delete Bang-Conect/multi-page Bang-Nokia/
+cd Bang-Nokia
+grunt rebuild
+grunt server
+```
 
+You'll then need to test everything is still working as expected before committing the changes. It's best to commit a library update on it's own without additional changes, when possible.
 
-==============================
+## Deploying to test
+
+Test site: [http://nokia.microp.bang-on.net/?project=nokia](http://nokia.microp.bang-on.net/?project=nokia)
+
+1. Run `grunt build` (or `grunt rebuild`)
+2. Commit and push changes
+3. SSH to the test server
+4. Run the `/data/microp/nokia-microsite-test/deploy.sh` script

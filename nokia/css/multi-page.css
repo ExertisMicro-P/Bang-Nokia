@@ -11,7 +11,7 @@
 	position: relative;
 	border: 0; /*remove for golive*/
 	/* original background: #546173; */
-	background: #ffffff !important;
+	background: #a4b8bf;
 }
 
 /* Nav */
@@ -156,6 +156,10 @@
 	width: 970px;
 	padding: 0 10px;
 	background: #fff;	
+}
+
+#mp-header, .h-row {
+	margin: 0;
 }
 
 h2
