@@ -119,6 +119,7 @@ module.exports = function(grunt) {
     rsync: {
       options: {
         args: ['--delete'],
+        exclude: ['.git*'],
         recursive: true
       },
       framework: {
