@@ -47,7 +47,7 @@ module.exports = function(grunt) {
       build: {
         options: {
           bundleExec: true,
-          sourcemap: 'file'
+          sourcemap: 'inline'
         },
         files: {
           '<%= buildDir %>/css/microsite.css': 'src/scss/styles.scss',
