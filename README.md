@@ -78,7 +78,7 @@ You can update the framework by pulling the latest version from [Bang-Conect](ht
 # make sure to clone the repo outside of this one
 git clone git@github.com:ExertisMicro-P/Bang-Conect.git
 
-rsync -r --delete Bang-Conect/multi-page Bang-Nokia/
+rsync -r --delete Bang-Conect/multi-page Bang-Conect/index.html Bang-Nokia/
 cd Bang-Nokia
 grunt rebuild
 grunt server

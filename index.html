@@ -67,7 +67,7 @@
 			// get QS settings
 			var project = querystring_lookup('project');
 			// ajax load project
-			if (project !== null && typeof(project) != "undefined") {
+			if (project !== null && typeof project !== "undefined") {
 				ajaxSBProject('/' + project, '#mp_zone_main');		// check QS & load content
 			}
 		}
