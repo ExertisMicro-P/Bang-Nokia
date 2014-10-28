@@ -44,7 +44,7 @@ module.exports = function(grunt) {
 
     // sass
     sass: {
-      dist: {
+      build: {
         options: {
           bundleExec: true,
           sourcemap: 'file'
@@ -154,7 +154,7 @@ module.exports = function(grunt) {
 
     // losslessly compress all images in /src/images
     imagemin: {
-      dist: {
+      src: {
         options: {
           optimizationLevel: 7,
           progressive: true,

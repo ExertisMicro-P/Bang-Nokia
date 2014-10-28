@@ -54,9 +54,19 @@ Running or `grunt` or `grunt watch` will listen for changes and do partial recom
 * `grunt` - alias for `grunt watch` & `grunt server`
 * `grunt watch` - watch the `src` directory for changes
 * `grunt server` - run a local webserver and open a browser tab
-* `grunt imagemin` - optimise images (this can be slow, so **not included** in `build` by default)
+* `grunt imagemin` - optimise images (this is slow, so is **not included** in `grunt build` by default)
 * `grunt build` - compile the `nokia` microsite
 * `grunt rebuild` - wipe the `nokia` microsite before building (updates the `micro-site` framework).
+
+### Adding and updating images
+
+The `grunt imagemin` task losslessly optimises all of the images in the [src/images](src/images) directory. This is a slow operation and therefore not included as part of `grunt build` by default.
+
+**If you add or update an image you need to manually run this operation before committing:**
+
+```sh
+grunt imagemin && grunt build
+```
 
 ## Updating the multi-page framework
 
