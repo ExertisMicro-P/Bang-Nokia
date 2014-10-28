@@ -45,6 +45,10 @@ module.exports = function(grunt) {
     // sass
     sass: {
       dist: {
+        options: {
+          bundleExec: true,
+          sourcemap: 'file'
+        },
         files: {
           '<%= buildDir %>/css/microsite.css': 'src/scss/styles.scss',
         }
@@ -60,7 +64,7 @@ module.exports = function(grunt) {
         expand: true,
         flatten: true,
         src: '<%= buildDir %>/css/microsite.css',
-        dest: '<%= buildDir %>/css/'
+        dest: '<%= buildDir %>/css'
       },
     },
 

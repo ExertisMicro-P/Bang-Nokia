@@ -12,23 +12,30 @@ Bang's test site: [http://nokia.microp.bang-on.net/?project=nokia](http://nokia.
 
 ## Getting started
 
-You need [grunt](http://gruntjs.com/), go [install](http://gruntjs.com/installing-grunt) that if you haven't got it already.
+### Dependencies
 
-Ensure you have the [Editorconfig](https://github.com/sindresorhus/editorconfig-sublime) sublime plugin installed and enabled.
+* [grunt](http://gruntjs.com/installing-grunt) (and node)
+* [bundler](http://bundler.io/) (and ruby)
+* [Editorconfig](https://github.com/sindresorhus/editorconfig-sublime) sublime plugin
 
 You'll also want the [livereload browser extension](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions).
 
-Clone the repo.
+### Setup
 
+Clone the repo to your local machine:
 ```sh
 git clone git@github.com:ExertisMicro-P/Bang-Nokia.git
+cd Bang-Nokia
 ```
 
-Install the node modules.
-
+Install the node modules:
 ```sh
-cd Bang-Nokia
 npm install
+```
+
+Install the ruby gems:
+```sh
+bundle install
 ```
 
 ## Development
@@ -37,11 +44,14 @@ npm install
 
 Our files can be found in the [src](src) directory. The files in `src` are then compiled by grunt (in combination with `micro-site`) to build the `nokia` directory.
 
+To avoid confusing files from the `nokia` and `src` directories when making content changes, it's best to open only the `src` directly in your editor, e.g. `subl Bang-Nokia/src`.
+
 To start a local webserver with grunt listening for changes simply run `grunt`.
 
 Running or `grunt` or `grunt watch` will listen for changes and do partial recompile of the `nokia` microsite, but this is **not a complete build**. `grunt build` should be run before committing.
 
 ### Grunt tasks
+
 * `grunt` - alias for `grunt watch` & `grunt server`
 * `grunt watch` - watch the `src` directory for changes
 * `grunt server` - run a local webserver and open a browser tab
