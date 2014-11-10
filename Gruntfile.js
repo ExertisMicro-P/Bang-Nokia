@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
 
-  // load all grunt tasks matching the `grunt-*` pattern
-  require('load-grunt-tasks')(grunt);
+  // load all grunt tasks matching the `grunt-*` pattern (and assemble)
+  require('load-grunt-tasks')(grunt, { pattern: ['grunt-*', 'assemble'] });
 
   grunt.initConfig({
 
@@ -9,8 +9,8 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     // fetch the config from pkg
-    buildDir:     grunt.file.readJSON('package.json').config.buildDir,
-    localDevPort: grunt.file.readJSON('package.json').config.localDevPort,
+    buildDir:     '<%= pkg.config.buildDir %>',
+    localDevPort: '<%= pkg.config.localDevPort %>',
 
     // declare banner to prepend to files
     banner: [
@@ -25,20 +25,28 @@ module.exports = function(grunt) {
     watch: {
       options: { livereload: true },
       css: {
-        files: ['src/scss/**/*.scss'],
+        files: 'src/scss/**/*.scss',
         tasks: ['sass', 'autoprefixer']
       },
       js: {
         files: 'src/js/**/*.js',
-        tasks: ['uglify']
+        tasks: 'uglify'
       },
       html: {
-        files: ['src/html/**/*.html'],
-        tasks: ['bake']
+        files: 'src/content/**/*',
+        tasks: 'assemble'
       },
-      assets: {
-        files: ['src/images/**/*', 'src/fonts/**/*', 'src/downloads/**/*'],
-        tasks: ['rsync:images', 'rsync:fonts', 'rsync:downloads']
+      images: {
+        files: 'src/images/**/*',
+        tasks: ['newer:imagemin:src', 'rsync:images']
+      },
+      fonts: {
+        files: 'src/fonts/**/*',
+        tasks: 'rsync:fonts'
+      },
+      downloads: {
+        files: 'src/downloads/**/*',
+        tasks: 'rsync:downloads'
       }
     },
 
@@ -50,7 +58,7 @@ module.exports = function(grunt) {
           sourcemap: 'inline'
         },
         files: {
-          '<%= buildDir %>/css/microsite.css': 'src/scss/styles.scss',
+          '<%= buildDir %>/css/microsite.css': 'src/scss/styles.scss'
         }
       }
     },
@@ -58,7 +66,8 @@ module.exports = function(grunt) {
     // autoprefixer
     autoprefixer: {
       options: {
-        browsers: ['last 2 versions', 'ie 9', 'ios 6', 'android 4']
+        browsers: ['last 2 versions', 'ie 9', 'ios 6', 'android 4'],
+        map: true
       },
       files: {
         expand: true,
@@ -76,16 +85,15 @@ module.exports = function(grunt) {
       minify: {
         expand: true,
         cwd: '<%= buildDir %>/css/',
-        src: ['microsite.css'],
+        src: 'microsite.css',
         dest: '<%= buildDir %>/css',
         ext: '.css'
       }
     },
 
-    // uglify to minify javascripts
+    // script minification
     uglify: {
-      // our scripts
-      custom: {
+      custom: { // our scripts
         files: [{
           expand: true,
           cwd: 'src/js',
@@ -96,8 +104,7 @@ module.exports = function(grunt) {
           banner: '<%= banner %>'
         }
       },
-      // 3rd party scripts
-      vendor: {
+      vendor: { // 3rd party scripts
         files: [{
           expand: true,
           cwd: 'src/js/vendor',
@@ -107,13 +114,22 @@ module.exports = function(grunt) {
       }
     },
 
-    // compile html from includes
-    bake: {
+    // compile html
+    assemble: {
+      options: {
+        layoutdir: 'src/content/layouts',
+        partials: 'src/content/partials/**/*.hbs',
+        data: 'src/content/data/**/*.json',
+        helpers: ['handlebars-helper-partial', 'src/content/helpers/**/*.js']
+      },
       build: {
+        options: {
+          layout: 'default.hbs'
+        },
         files: [{
           expand: true,
-          cwd: 'src/html',
-          src: '*.html',
+          cwd: 'src/content/pages',
+          src: '**/*.{hbs,html}',
           dest: '<%= buildDir %>'
         }]
       }
@@ -163,7 +179,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: 'src/images/',
-          src: ['**/*.{png,jpg,gif}'],
+          src: '**/*.{png,jpg,gif}',
           dest: 'src/images/'
         }]
       }
@@ -197,11 +213,12 @@ module.exports = function(grunt) {
 
   // standard build task, should be run before commiting
   grunt.registerTask('build', ['sass', 'autoprefixer', 'cssmin', 'uglify',
-    'bake', 'rsync:images', 'rsync:fonts', 'rsync:downloads']);
-  
+    'assemble', 'newer:imagemin', 'rsync:images', 'rsync:fonts',
+    'rsync:downloads']);
+
   // recompile the microsite from scratch
   grunt.registerTask('rebuild', ['clean', 'rsync:framework', 'build']);
-  
+
   // run the web server
   grunt.registerTask('server', 'connect:server');
 
