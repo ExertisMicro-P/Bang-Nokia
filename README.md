@@ -7,7 +7,7 @@ Bang's test site: [http://nokia.microp.bang-on.net/?project=nokia](http://nokia.
 ## TODO
 * Move inline styling into SCSS modules.
 * Move styles from [_shame.scss](./src/scss/_shame.scss) to abstracted modules.
-* Make better use of [assemble](http://assemble.io/docs/) templating to DRY up the markup.
+* Make better use of [assemble](https://github.com/assemble/assemble) templating to DRY up the markup.
 * Move uppercasing out of markup and into CSS everywhere except acronyms.
 * Remove hardcoded entities from markup, e.g. `®` should be `&reg;`.
 * Remove classes like `.block`, `.line-height` & `.sup` in favour of BEM elements.
@@ -24,6 +24,7 @@ Bang's test site: [http://nokia.microp.bang-on.net/?project=nokia](http://nokia.
 * [grunt](http://gruntjs.com/installing-grunt) (and node)
 * [bundler](http://bundler.io/) (and ruby)
 * [Editorconfig](https://github.com/sindresorhus/editorconfig-sublime) sublime plugin
+* [Handlebars](https://github.com/daaain/Handlebars) sublime plugin
 
 You'll also want the [livereload browser extension](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions).
 
