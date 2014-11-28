@@ -25,27 +25,27 @@ module.exports = function(grunt) {
     watch: {
       options: { livereload: true },
       css: {
-        files: 'src/scss/**/*.scss',
+        files: 'src/scss/**',
         tasks: ['sass', 'autoprefixer']
       },
       js: {
-        files: 'src/js/**/*.js',
+        files: 'src/js/**',
         tasks: 'uglify'
       },
       html: {
-        files: 'src/content/**/*',
+        files: 'src/content/**',
         tasks: 'assemble'
       },
       images: {
-        files: 'src/images/**/*',
+        files: 'src/images/**',
         tasks: ['newer:imagemin:src', 'rsync:images']
       },
       fonts: {
-        files: 'src/fonts/**/*',
+        files: 'src/fonts/**',
         tasks: 'rsync:fonts'
       },
       downloads: {
-        files: 'src/downloads/**/*',
+        files: 'src/downloads/**',
         tasks: 'rsync:downloads'
       }
     },
@@ -108,7 +108,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: 'src/js/vendor',
-          src: '**/*.js',
+          src: '**.js',
           dest: '<%= buildDir %>/js'
         }]
       }
@@ -118,9 +118,9 @@ module.exports = function(grunt) {
     assemble: {
       options: {
         layoutdir: 'src/content/layouts',
-        partials: 'src/content/partials/**/*.hbs',
-        data: 'src/content/data/**/*.json',
-        helpers: ['handlebars-helper-partial', 'src/content/helpers/**/*.js']
+        partials: 'src/content/partials/**.hbs',
+        data: 'src/content/data/**.json',
+        helpers: ['handlebars-helper-partial', 'src/content/helpers/**.js']
       },
       build: {
         options: {
@@ -129,7 +129,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: 'src/content/pages',
-          src: '**/*.{hbs,html}',
+          src: '**.{hbs,html}',
           dest: '<%= buildDir %>'
         }]
       }
@@ -179,7 +179,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: 'src/images/',
-          src: '**/*.{png,jpg,gif}',
+          src: '**.{png,jpg,gif}',
           dest: 'src/images/'
         }]
       }
