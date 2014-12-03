@@ -17,7 +17,6 @@ module.exports = function(grunt) {
       '/*!',
       ' * Project Name: <%= pkg.name %>',
       ' * Author: <%= pkg.author %>',
-      ' * Date: <%= grunt.template.today() %>',
       ' */\n'
     ].join('\n'),
 
