@@ -16,6 +16,7 @@ Bang's test site: [http://nokia.microp.bang-on.net/?project=nokia](http://nokia.
 * Remove any mention of `grid_*` or `container_*` classes from other CSS files.
 * Scope `_reset.scss` styles within a microsite specific container class.
 * Use semantic `<hX>` tags where appropriate.
+* Standardise the naming format of images for better maintainability
 
 ## Getting started
 
