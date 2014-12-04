@@ -17,6 +17,8 @@ Bang's test site: [http://nokia.microp.bang-on.net/?project=nokia](http://nokia.
 * Scope `_reset.scss` styles within a microsite specific container class.
 * Use semantic `<hX>` tags where appropriate.
 * Standardise the naming format of images for better maintainability
+* Separate jquery.bxslider CSS from our custom slider theme and upgrade CSS to 4.1.2.
+* Better workflow for `src/js`. Ideally we want to concatenate 3rd party plugins and our custom scripts on `grunt build` or `grunt watch`. 3rd party plugins can be minified, our custom scripts should be left un-minified so Exertis can debug deployment issues.
 
 ## Getting started
 
