@@ -54,7 +54,8 @@ module.exports = function(grunt) {
       build: {
         options: {
           bundleExec: true,
-          sourcemap: 'inline'
+          sourcemap: 'inline',
+          banner: '<%= banner %>'
         },
         files: {
           '<%= buildDir %>/css/microsite.css': 'src/scss/styles.scss'
@@ -76,20 +77,6 @@ module.exports = function(grunt) {
       },
     },
 
-    // css minification
-    cssmin: {
-      options: {
-        banner: '<%= banner %>'
-      },
-      minify: {
-        expand: true,
-        cwd: '<%= buildDir %>/css/',
-        src: 'microsite.css',
-        dest: '<%= buildDir %>/css',
-        ext: '.css'
-      }
-    },
-
     // script minification
     uglify: {
       custom: { // our scripts
@@ -100,7 +87,11 @@ module.exports = function(grunt) {
           dest: '<%= buildDir %>/js'
         }],
         options: {
-          banner: '<%= banner %>'
+          banner: '<%= banner %>',
+          // minimal minification to allow exertis to tweak scripts if neccessary
+          mangle: false,
+          compress: false,
+          beautify: true
         }
       },
       vendor: { // 3rd party scripts
@@ -211,9 +202,8 @@ module.exports = function(grunt) {
   });
 
   // standard build task, should be run before commiting
-  grunt.registerTask('build', ['sass', 'autoprefixer', 'cssmin', 'uglify',
-    'assemble', 'newer:imagemin', 'rsync:images', 'rsync:fonts',
-    'rsync:downloads']);
+  grunt.registerTask('build', ['sass', 'autoprefixer', 'uglify', 'assemble',
+    'newer:imagemin', 'rsync:images', 'rsync:fonts', 'rsync:downloads']);
 
   // recompile the microsite from scratch
   grunt.registerTask('rebuild', ['clean', 'rsync:framework', 'build']);
