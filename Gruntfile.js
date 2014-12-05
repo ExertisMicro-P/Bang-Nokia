@@ -212,7 +212,7 @@ module.exports = function(grunt) {
         command: function (environment_id) {
           var environment = grunt.config.get('environments')[environment_id],
               cmd = 'ssh -tt ' + environment.host + ' \'cd ' + environment.directory + ' && sudo deploy || ./deploy.sh\'';
-          grunt.log.subhead('Deploying site ' + environment.directory + ' on ' + environment.host);
+          grunt.log.subhead('Deploying site ' + environment.directory.replace(/^\/data\//, '') + ' on ' + environment.host);
           grunt.log.debug('Command: ' + cmd);
           return cmd;
         }
