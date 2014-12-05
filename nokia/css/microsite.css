@@ -543,7 +543,7 @@ ol, ul {
 
 .container_25 {
   font-family: 'nokiaPureRegular', Arial, Calibri, sans-serif;
-  background-color: #fff;
+  background-color: #fff
   /** The Magnificent Clearfix: Updated to prevent margin-collapsing on child elements.  mp/bestclearfix **/
   /** Fix clearfix: blueprintcss.lighthouseapp.com/projects/15318/tickets/5-extra-margin-padding-bottom-of-page **/ }
   .container_25 ul, .container_25 p {

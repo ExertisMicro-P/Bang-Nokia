@@ -66,13 +66,14 @@ To start a local webserver with grunt listening for changes simply run `grunt`.
 
 Running or `grunt` or `grunt watch` will listen for changes and do partial recompile of the `nokia` microsite, but this is **not a complete build**. `grunt build` should be run before committing.
 
-### Grunt tasks
+## Grunt tasks
 
 * `grunt` - alias for `grunt watch` & `grunt server`
 * `grunt watch` - watch the `src` directory for changes
 * `grunt server` - run a local webserver and open a browser tab
 * `grunt build` - compile the `nokia` microsite
 * `grunt rebuild` - wipe the `nokia` microsite before building (updates the `micro-site` framework).
+* `grunt deploy:test` - deploy **committed and pushed** changes to test site
 
 ## Updating the multi-page framework
 
@@ -98,17 +99,20 @@ Test site: [http://nokia.microp.bang-on.net/?project=nokia](http://nokia.microp.
 
 1. Run `grunt build` (or `grunt rebuild`)
 2. Commit and push changes
-3. Run the deploy script:
+3. Deploy the changes to the test site with your preferred method:
 
 ```sh
-# option 1 - ssh to the machine and run locally
+# option 1 - use grunt (under the covers this is basically an alias for option 3)
+grunt deploy:test
+
+# option 2 - use the ec2 script
+ec2 deploy site microp/nokia-microsite-test
+
+# option 3 - run remotely over ssh
+ssh -t vapour.ec2 'cd /data/microp/nokia-microsite-test/ && ./deploy.sh'
+
+# option 4 - ssh to the machine and run locally
 ssh vapour.ec2
 cd /data/microp/nokia-microsite-test
 ./deploy.sh
-
-# option 2 - run remotely over ssh
-ssh -t vapour.ec2 'cd /data/microp/nokia-microsite-test/ && ./deploy.sh'
-
-# option 3 - use the ec2 script
-ec2 deploy site microp/nokia-microsite-test
 ```

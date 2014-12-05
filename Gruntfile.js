@@ -3,6 +3,9 @@ module.exports = function(grunt) {
   // load all grunt tasks matching the `grunt-*` pattern (and assemble)
   require('load-grunt-tasks')(grunt, { pattern: ['grunt-*', 'assemble'] });
 
+  // load in local custom grunt tasks
+  grunt.loadTasks('grunt/tasks');
+
   grunt.initConfig({
 
     // load in the package.json data
@@ -11,6 +14,7 @@ module.exports = function(grunt) {
     // fetch the config from pkg
     buildDir:     '<%= pkg.config.buildDir %>',
     localDevPort: '<%= pkg.config.localDevPort %>',
+    environments: '<%= pkg.config.environments %>',
 
     // declare banner to prepend to files
     banner: [
@@ -20,7 +24,7 @@ module.exports = function(grunt) {
       ' */\n'
     ].join('\n'),
 
-    // watch for changes and trigger sass and livereload
+    // watch for changes and trigger relevant tasks with livereload
     watch: {
       options: { livereload: true },
       css: {
@@ -197,13 +201,29 @@ module.exports = function(grunt) {
     concurrent: {
       dev: ['server', 'watch'],
       options: { logConcurrentOutput: true }
-    }
+    },
 
+    // for running deploy shell command (see grunt/tasks/deploy.js)
+    shell: {
+      options: {
+        stdinRawMode: true // this is required for sudo password prompt
+      },
+      deploy: {
+        command: function (environment_id) {
+          var environment = grunt.config.get('environments')[environment_id],
+              cmd = 'ssh -tt ' + environment.host + ' \'cd ' + environment.directory + ' && sudo deploy || ./deploy.sh\'';
+          grunt.log.subhead('Deploying site ' + environment.directory + ' on ' + environment.host);
+          grunt.log.debug('Command: ' + cmd);
+          return cmd;
+        }
+      }
+    }
   });
 
   // standard build task, should be run before commiting
   grunt.registerTask('build', ['sass', 'autoprefixer', 'uglify', 'assemble',
-    'newer:imagemin', 'rsync:images', 'rsync:fonts', 'rsync:downloads']);
+                     'newer:imagemin', 'rsync:images', 'rsync:fonts',
+                     'rsync:downloads']);
 
   // recompile the microsite from scratch
   grunt.registerTask('rebuild', ['clean', 'rsync:framework', 'build']);
